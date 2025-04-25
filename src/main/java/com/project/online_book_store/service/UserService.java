@@ -1,0 +1,15 @@
+package com.project.online_book_store.service;
+
+import com.project.online_book_store.dto.UserDetailsDTO;
+import com.project.online_book_store.entity.User;
+
+import java.util.List;
+
+public interface UserService {
+
+    UserDetailsDTO saveUser(UserDetailsDTO userDetailsDTO);
+    List<UserDetailsDTO> findUser();
+    UserDetailsDTO getUserById(int id);
+    boolean updateUser(int id, User updatedUser);
+    boolean deleteUserById(int id);
+}
