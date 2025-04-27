@@ -11,5 +11,7 @@ public interface PurchasedBookMapper {
     @Mapping(source = "book.title", target = "bookTitle")
     @Mapping(source = "book.availability", target = "quantity")
     @Mapping(source = "book.price", target = "priceDTO")
+    @Mapping(source = "book.author", target = "bookAuthor")
+    @Mapping(source = "book.genre", target = "bookGenre")
     PurchasedBookDTO toBookDTO(Book book);
 }

@@ -10,6 +10,12 @@ import java.math.BigDecimal;
 public class PurchasedBookDTO {
 
     private String bookTitle;
+
+    private String bookAuthor;
+
+    private String bookGenre;
+
     private int quantity;
+
     private BigDecimal priceDTO;
 }
