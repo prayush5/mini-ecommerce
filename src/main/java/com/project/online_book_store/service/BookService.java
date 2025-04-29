@@ -2,7 +2,9 @@ package com.project.online_book_store.service;
 
 import com.project.online_book_store.dto.PurchasedBookDTO;
 import com.project.online_book_store.entity.Book;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface BookService {
@@ -12,4 +14,6 @@ public interface BookService {
     PurchasedBookDTO getBookByTitle(String title);
     List<PurchasedBookDTO> getBookByAuthor(String author);
     List<PurchasedBookDTO> getBookByGenre(String genre);
+    void save(MultipartFile file) throws IOException;
+    List<Book> getAllBooks();
 }

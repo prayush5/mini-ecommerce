@@ -1,5 +1,6 @@
 package com.project.online_book_store.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,15 +18,20 @@ public class Medicine {
     private Long id;
 
     private String name;
+
     private String manufacturer;
-    private BigDecimal price;
+
+    private double price;
+
     private int stockQuantity;
 
     private LocalDate manufactureDate;
+
     private LocalDate expiryDate;
 
     @ManyToOne
     @JoinColumn(name = "company_id")
+    @JsonBackReference
     private Company company;
 
     @ManyToOne

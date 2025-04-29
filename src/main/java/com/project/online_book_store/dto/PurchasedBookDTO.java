@@ -17,5 +17,5 @@ public class PurchasedBookDTO {
 
     private int quantity;
 
-    private BigDecimal priceDTO;
+    private double priceDTO;
 }

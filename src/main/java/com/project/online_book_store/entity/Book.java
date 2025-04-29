@@ -18,7 +18,6 @@ import java.util.List;
 public class Book {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int bookId;
 
     @Column(nullable = false)
@@ -31,7 +30,7 @@ public class Book {
     private String genre;
 
     @Column(nullable = false)
-    private BigDecimal price;
+    private double price;
 
     @Column
     private int availability;

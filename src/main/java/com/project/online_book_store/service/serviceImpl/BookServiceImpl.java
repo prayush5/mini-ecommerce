@@ -4,12 +4,15 @@ package com.project.online_book_store.service.serviceImpl;
 import com.project.online_book_store.dto.PurchasedBookDTO;
 import com.project.online_book_store.entity.Book;
 import com.project.online_book_store.exception.ResourceNotFoundException;
+import com.project.online_book_store.helper.MyExcelHelper;
 import com.project.online_book_store.mapper.PurchasedBookMapper;
 import com.project.online_book_store.repository.BookRepository;
 import com.project.online_book_store.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -59,5 +62,21 @@ public class BookServiceImpl implements BookService {
                 .map(purchasedBookMapper::toBookDTO)
                 .toList();
     }
+
+    @Override
+    public void save(MultipartFile file) throws IOException {
+        try {
+            List<Book> books = MyExcelHelper.convertExcelToListOfBook(file.getInputStream());
+            this.bookRepository.saveAll(books);
+        } catch (Exception e) {
+            throw new IOException("Failed to save books: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public List<Book> getAllBooks() {
+        return this.bookRepository.findAll();
+    }
+
 
 }
