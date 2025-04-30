@@ -1,12 +1,14 @@
 package com.project.online_book_store.service.serviceImpl;
 
 import com.project.online_book_store.dto.UserDetailsDTO;
+import com.project.online_book_store.dto.UserResponse;
 import com.project.online_book_store.entity.User;
 import com.project.online_book_store.exception.ResourceNotFoundException;
 import com.project.online_book_store.mapper.UserMapper;
 import com.project.online_book_store.repository.UserRepository;
 import com.project.online_book_store.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,13 +24,20 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
 
     @Override
-    public UserDetailsDTO saveUser(UserDetailsDTO userDetailsDTO) {
+    public UserResponse saveUserr(UserDetailsDTO userDetailsDTO) {
         User user = userMapper.toUserEntity(userDetailsDTO);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         User savedUser = userRepository.save(user);
-        return userMapper.toUserDTO(savedUser);
+        System.out.println(savedUser);
+        System.out.println("------------");
+        return userMapper.toDTO(savedUser);
     }
+
 
     @Override
     public List<UserDetailsDTO> findUser(){

@@ -1,6 +1,7 @@
 package com.project.online_book_store.mapper;
 
 import com.project.online_book_store.dto.UserDetailsDTO;
+import com.project.online_book_store.dto.UserResponse;
 import com.project.online_book_store.entity.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -23,6 +24,10 @@ public interface UserMapper {
     @Mapping(source = "purchasedBook", target = "book")
     @Mapping(source = "purchasedMedicine", target = "medicine")
     @Mapping(source = "cartItem", target = "cartItems")
+    @Mapping(source = "password", target = "password")
     User toUserEntity(UserDetailsDTO userDetailsDTO);
+
+    @Mapping(source = "userId", target = "id")
+    UserResponse toDTO(User user);
 
 }

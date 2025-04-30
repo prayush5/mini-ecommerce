@@ -1,6 +1,7 @@
 package com.project.online_book_store.controller;
 
 import com.project.online_book_store.dto.UserDetailsDTO;
+import com.project.online_book_store.dto.UserResponse;
 import com.project.online_book_store.entity.User;
 import com.project.online_book_store.exception.ResourceNotFoundException;
 import com.project.online_book_store.mapper.UserMapper;
@@ -9,6 +10,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,14 +24,17 @@ public class UserController {
     @Autowired
     private UserMapper userMapper;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @GetMapping("/get")
     public ResponseEntity<List<UserDetailsDTO>> getUsers() {
         return ResponseEntity.ok(userService.findUser());
     }
 
     @PostMapping("/save")
-    public ResponseEntity<UserDetailsDTO> saveUser(@Valid @RequestBody UserDetailsDTO userDetailsDTO){
-        UserDetailsDTO savedUser = userService.saveUser(userDetailsDTO);
+    public ResponseEntity<UserResponse> saveUser(@Valid @RequestBody UserDetailsDTO userDetailsDTO){
+        UserResponse savedUser = userService.saveUserr(userDetailsDTO);
         return ResponseEntity.ok(savedUser);
     }
 
