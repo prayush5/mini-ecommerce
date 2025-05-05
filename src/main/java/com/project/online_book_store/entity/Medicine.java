@@ -21,7 +21,7 @@ public class Medicine {
 
     private String manufacturer;
 
-    private double price;
+    private BigDecimal price;
 
     private int stockQuantity;
 

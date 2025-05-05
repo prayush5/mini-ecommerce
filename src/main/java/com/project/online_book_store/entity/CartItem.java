@@ -1,5 +1,6 @@
 package com.project.online_book_store.entity;
 
+
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,9 +17,14 @@ public class CartItem {
     @JoinColumn(name = "user_id")
     private User user;
 
-    private String book_title;
+    @ManyToOne
+    @JoinColumn(name = "book_id")
+    private Book book;
 
-    private String medicineName;
+    @ManyToOne
+    @JoinColumn(name = "medicine_id")
+    private Medicine medicine;
 
     private int quantity;
 }
+

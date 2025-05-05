@@ -8,6 +8,8 @@ import com.project.online_book_store.mapper.PurchasedMedicineMapper;
 import com.project.online_book_store.repository.MedicineRepository;
 import com.project.online_book_store.service.MedicineService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -29,8 +31,8 @@ public class MedicineServiceImpl implements MedicineService {
     }
 
     @Override
-    public List<Medicine> findMedicine() {
-        return medicineRepository.findAll();
+    public Page<Medicine> findMedicine(Pageable pageable) {
+        return medicineRepository.findAll(pageable);
     }
 
     @Override

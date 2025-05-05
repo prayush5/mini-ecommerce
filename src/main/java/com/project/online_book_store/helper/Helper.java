@@ -9,6 +9,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.InputStream;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +43,7 @@ public class Helper {
                             medicine.setManufacturer(getCellValueAsString(cell));
                             break;
                         case 2:
-                            medicine.setPrice(parseCellAsDouble(cell));
+                            medicine.setPrice(BigDecimal.valueOf(parseCellAsDouble(cell)));
                             break;
                         case 3:
                             medicine.setStockQuantity((int) parseCellAsDouble(cell));

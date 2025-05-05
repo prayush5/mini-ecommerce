@@ -9,6 +9,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.InputStream;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,7 +48,7 @@ public class MyExcelHelper {
                             book.setGenre(getCellValueAsString(cell));
                             break;
                         case 4:
-                            book.setPrice(cell.getNumericCellValue());
+                            book.setPrice(BigDecimal.valueOf(parseCellAsDouble(cell)));
                             break;
                         case 5:
                             book.setAvailability((int) cell.getNumericCellValue());
@@ -68,5 +69,14 @@ public class MyExcelHelper {
         return cell.getCellType() == CellType.STRING ?
                 cell.getStringCellValue() :
                 String.valueOf(cell.getNumericCellValue());
+    }
+
+    private static double parseCellAsDouble(Cell cell){
+        if (cell.getCellType()==CellType.NUMERIC){
+            return cell.getNumericCellValue();
+        } else if (cell.getCellType()==CellType.STRING) {
+            return Double.parseDouble(cell.getStringCellValue());
+        }
+        return 0;
     }
 }

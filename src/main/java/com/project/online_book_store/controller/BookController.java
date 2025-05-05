@@ -3,8 +3,12 @@ package com.project.online_book_store.controller;
 import com.project.online_book_store.dto.PurchasedBookDTO;
 import com.project.online_book_store.entity.Book;
 import com.project.online_book_store.exception.ResourceNotFoundException;
+import com.project.online_book_store.mapper.PurchasedBookMapper;
 import com.project.online_book_store.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +21,9 @@ public class BookController {
     @Autowired
     private BookService bookService;
 
+    @Autowired
+    private PurchasedBookMapper purchasedBookMapper;
+
     @PostMapping("/add")
     public ResponseEntity<Book> addBook(@RequestBody Book book){
         Book savedBook = bookService.saveBook(book);
@@ -24,8 +31,14 @@ public class BookController {
     }
 
     @GetMapping("/view")
-    public ResponseEntity<List<Book>> getBooks(){
-        return ResponseEntity.ok(bookService.findBooks());
+    public ResponseEntity<Page<PurchasedBookDTO>> getBooks(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size){
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Book> bookPage = bookService.findBooks(pageable);
+
+        Page<PurchasedBookDTO> dtoPage = bookPage.map(purchasedBookMapper::toBookDTO);
+        return ResponseEntity.ok(dtoPage);
     }
 
     @GetMapping("/view/{title}")

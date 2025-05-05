@@ -1,5 +1,6 @@
 package com.project.online_book_store.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.online_book_store.entity.Orders;
 import com.project.online_book_store.entity.Role;
 import jakarta.persistence.*;
@@ -15,6 +16,7 @@ import java.util.List;
 @Data
 @Getter
 @Setter
+
 public class UserDetailsDTO {
 
     @Id
@@ -40,6 +42,10 @@ public class UserDetailsDTO {
     private List<PurchasedMedicineDTO> purchasedMedicine;
 
     private List<CartItemDTO> cartItem;
+
+    private double totalBookAmount;
+
+    private double totalMedicineAmount;
 
 
 }

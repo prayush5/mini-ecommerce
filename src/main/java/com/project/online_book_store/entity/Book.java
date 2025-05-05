@@ -30,7 +30,7 @@ public class Book {
     private String genre;
 
     @Column(nullable = false)
-    private double price;
+    private BigDecimal price;
 
     @Column
     private int availability;

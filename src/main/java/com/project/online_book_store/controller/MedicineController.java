@@ -6,10 +6,12 @@ import com.project.online_book_store.entity.Medicine;
 import com.project.online_book_store.exception.ResourceNotFoundException;
 import com.project.online_book_store.service.MedicineService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/medicine")
@@ -25,8 +27,12 @@ public class MedicineController {
     }
 
     @GetMapping("/view")
-    public ResponseEntity<List<Medicine>> getMedicines(){
-        return ResponseEntity.ok(medicineService.findMedicine());
+    public ResponseEntity<Page<Medicine>> getMedicines(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size){
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Medicine> medicines = medicineService.findMedicine(pageable);
+        return ResponseEntity.ok(medicines);
     }
 
     @GetMapping("/view/{medicineName}")

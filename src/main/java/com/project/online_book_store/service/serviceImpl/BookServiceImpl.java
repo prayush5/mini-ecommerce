@@ -9,6 +9,8 @@ import com.project.online_book_store.mapper.PurchasedBookMapper;
 import com.project.online_book_store.repository.BookRepository;
 import com.project.online_book_store.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -30,8 +32,8 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<Book> findBooks() {
-        return bookRepository.findAll();
+    public Page<Book> findBooks(Pageable pageable) {
+        return bookRepository.findAll(pageable);
     }
 
     @Override

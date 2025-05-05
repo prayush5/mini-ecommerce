@@ -8,6 +8,6 @@ import lombok.Setter;
 public class CartItemDTO {
 
     private String bookTitle;
-    private String medicine_name;
+    private String medicineName;
     private int quantityDTO;
 }
