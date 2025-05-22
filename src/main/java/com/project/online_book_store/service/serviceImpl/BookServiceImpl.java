@@ -38,12 +38,16 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public PurchasedBookDTO getBookByTitle(String title) {
-        Book book = bookRepository.findByTitle(title);
-        if (book==null){
+        List<Book> books = bookRepository.findByTitle(title);
+        if (books.isEmpty()) {
             throw new ResourceNotFoundException("Book not found with title: " + title);
         }
+
+        Book book = books.get(0);
+
         return purchasedBookMapper.toBookDTO(book);
     }
+
 
     @Override
     public List<PurchasedBookDTO> getBookByAuthor(String author) {

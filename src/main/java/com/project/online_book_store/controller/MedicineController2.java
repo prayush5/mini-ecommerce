@@ -40,8 +40,8 @@ public class MedicineController2 {
         }
     }
 
-    @GetMapping("/api/medicine")
-    public ResponseEntity<List<Medicine>> getAllBook() {
+    @GetMapping("/api/medicines")
+    public ResponseEntity<List<Medicine>> getAllMedicine() {
         return ResponseEntity.ok(medicineService.getAllMedicines());
     }
 }

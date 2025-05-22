@@ -56,6 +56,18 @@ public class UserServiceImpl implements UserService {
         return userMapper.toDTO(savedUser);
     }
 
+    @Override
+
+        public UserResponse loginUser(String email, String password) {
+            User user = userRepository.findByEmail(email)
+                    .orElseThrow(() -> new ResourceNotFoundException("User not found with email: " + email));
+            if (passwordEncoder.matches(password, user.getPassword())) {
+                return userMapper.toResponse(user);
+            }
+            return null;
+        }
+
+
 
     @Override
     public Page<UserResponse> findUser(Pageable pageable){
@@ -71,7 +83,6 @@ public class UserServiceImpl implements UserService {
         UserDetailsDTO dto = new UserDetailsDTO();
         dto.setId(user.getUserId());
         dto.setUsername(user.getUsername());
-        dto.setPassword(user.getPassword());
         dto.setEmail(user.getEmail());
 
         double totalBookAmount = user.getCartItems().stream()

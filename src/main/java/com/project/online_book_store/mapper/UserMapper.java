@@ -30,4 +30,5 @@ public interface UserMapper {
     @Mapping(source = "userId", target = "id")
     UserResponse toDTO(User user);
 
+    UserResponse toResponse(User user);
 }

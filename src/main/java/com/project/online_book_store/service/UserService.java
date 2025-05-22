@@ -15,5 +15,6 @@ public interface UserService {
     boolean updateUser(int id, User updatedUser);
     boolean deleteUserById(int id);
     UserResponse saveUserr(UserDetailsDTO userDetailsDTO);
+    UserResponse loginUser(String email, String password);
 
 }

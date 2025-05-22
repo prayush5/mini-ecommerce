@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.InputStream;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -76,11 +77,12 @@ public class Helper {
                 String.valueOf(cell.getNumericCellValue());
     }
 
-    private static LocalDate parseCellAsLocalDate(Cell cell){
-        if (cell.getCellType()==CellType.NUMERIC){
+    private static LocalDate parseCellAsLocalDate(Cell cell) {
+        if (cell.getCellType() == CellType.NUMERIC) {
             return cell.getLocalDateTimeCellValue().toLocalDate();
-        } else if (cell.getCellType()==CellType.STRING){
-            return LocalDate.parse(cell.getStringCellValue());
+        } else if (cell.getCellType() == CellType.STRING) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d/yy");
+            return LocalDate.parse(cell.getStringCellValue().trim(), formatter);
         }
         return null;
     }

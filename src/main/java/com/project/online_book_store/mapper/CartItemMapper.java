@@ -10,5 +10,6 @@ public interface CartItemMapper {
     @Mapping(source = "book.title", target = "bookTitle")
     @Mapping(source = "medicine.name", target = "medicineName")
     @Mapping(source = "quantity", target = "quantityDTO")
+    @Mapping(source = "price", target = "priceDTO")
     CartItemDTO toCartItemDTO(CartItem cartItem);
 }

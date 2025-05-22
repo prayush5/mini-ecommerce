@@ -18,6 +18,7 @@ import java.util.List;
 public class Book {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int bookId;
 
     @Column(nullable = false)
