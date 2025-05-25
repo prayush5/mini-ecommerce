@@ -36,7 +36,7 @@ public class Book {
     @Column
     private int availability;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "userId")
     private User user;
 
@@ -46,5 +46,7 @@ public class Book {
     @ManyToOne
     @JoinColumn(name = "seller_id")
     private User seller;
+
+
 
 }

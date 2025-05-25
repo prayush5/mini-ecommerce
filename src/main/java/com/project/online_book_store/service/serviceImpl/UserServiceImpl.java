@@ -4,6 +4,7 @@ import com.project.online_book_store.dto.PurchasedBookDTO;
 import com.project.online_book_store.dto.PurchasedMedicineDTO;
 import com.project.online_book_store.dto.UserDetailsDTO;
 import com.project.online_book_store.dto.UserResponse;
+import com.project.online_book_store.entity.Role;
 import com.project.online_book_store.entity.User;
 import com.project.online_book_store.exception.ResourceNotFoundException;
 import com.project.online_book_store.mapper.CartItemMapper;
@@ -45,16 +46,24 @@ public class UserServiceImpl implements UserService {
     private CartItemMapper cartItemMapper;
 
 
-
     @Override
     public UserResponse saveUserr(UserDetailsDTO userDetailsDTO) {
+        Optional<User> existingUser = userRepository.findByEmail(userDetailsDTO.getEmail());
+        if (existingUser.isPresent()) {
+            throw new IllegalArgumentException("Email already exists: " + userDetailsDTO.getEmail());
+        }
+
         User user = userMapper.toUserEntity(userDetailsDTO);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+
+        Role roleEnum = userDetailsDTO.getRole();
+        user.setRole(roleEnum);
+
         User savedUser = userRepository.save(user);
-        System.out.println(savedUser);
-        System.out.println("------------");
         return userMapper.toDTO(savedUser);
     }
+
+
 
     @Override
 
@@ -66,8 +75,6 @@ public class UserServiceImpl implements UserService {
             }
             return null;
         }
-
-
 
     @Override
     public Page<UserResponse> findUser(Pageable pageable){
@@ -84,6 +91,7 @@ public class UserServiceImpl implements UserService {
         dto.setId(user.getUserId());
         dto.setUsername(user.getUsername());
         dto.setEmail(user.getEmail());
+        dto.setRole(user.getRole());
 
         double totalBookAmount = user.getCartItems().stream()
                         .filter(cartItem -> cartItem.getBook()!=null)

@@ -84,5 +84,10 @@ public class BookServiceImpl implements BookService {
         return this.bookRepository.findAll();
     }
 
+    @Override
+    public void deleteBookById(Long id) {
+        bookRepository.deleteById(id);
+    }
+
 
 }

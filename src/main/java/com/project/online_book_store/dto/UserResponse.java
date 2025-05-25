@@ -1,6 +1,7 @@
 package com.project.online_book_store.dto;
 
 
+import com.project.online_book_store.entity.Role;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,6 +18,8 @@ public class UserResponse {
     private String email;
 
     private List<ReviewDTO> review;
+
+    private Role role;
 
     private List<PurchasedBookDTO> purchasedBook;
 

@@ -18,4 +18,5 @@ public interface BookService {
     List<PurchasedBookDTO> getBookByGenre(String genre);
     void save(MultipartFile file) throws IOException;
     List<Book> getAllBooks();
+    void deleteBookById(Long id);
 }

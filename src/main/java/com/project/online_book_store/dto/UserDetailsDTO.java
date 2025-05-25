@@ -41,5 +41,7 @@ public class UserDetailsDTO {
 
     private double totalMedicineAmount;
 
+    private Role role;
+
 
 }

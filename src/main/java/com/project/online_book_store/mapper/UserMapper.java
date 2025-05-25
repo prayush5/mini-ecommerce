@@ -18,6 +18,7 @@ public interface UserMapper {
     @Mapping(target = "purchasedBook", source = "book")
     @Mapping(target = "purchasedMedicine", source = "medicine")
     @Mapping(target = "cartItem", source = "cartItems")
+    @Mapping(source = "role", target = "role")
     UserDetailsDTO toUserDTO(User user);
 
     @Mapping(target = "userId", source = "id")
@@ -30,5 +31,7 @@ public interface UserMapper {
     @Mapping(source = "userId", target = "id")
     UserResponse toDTO(User user);
 
+    @Mapping(source = "userId", target = "id")
+    @Mapping(source = "role", target = "role")
     UserResponse toResponse(User user);
 }
