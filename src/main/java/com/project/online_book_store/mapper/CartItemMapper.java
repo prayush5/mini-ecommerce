@@ -13,3 +13,4 @@ public interface CartItemMapper {
     @Mapping(source = "price", target = "priceDTO")
     CartItemDTO toCartItemDTO(CartItem cartItem);
 }
+

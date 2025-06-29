@@ -64,6 +64,12 @@ public class CartController {
         cartItemRepository.deleteById(cartItemId);
         return ResponseEntity.ok("Item removed from cart");
     }
+
+    @DeleteMapping("/clear/{userId}")
+    public ResponseEntity<String> clearCart(@PathVariable int userId){
+        cartService.clearCartByUserId(userId);
+        return ResponseEntity.ok("Cart cleared!");
+    }
 }
 
 

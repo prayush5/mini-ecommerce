@@ -7,7 +7,6 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring", uses = {
-        ReviewMapper.class,
         PurchasedBookMapper.class,
         PurchasedMedicineMapper.class,
         CartItemMapper.class

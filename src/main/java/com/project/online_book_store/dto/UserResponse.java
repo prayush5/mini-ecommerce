@@ -16,9 +16,7 @@ public class UserResponse {
     private String username;
 
     private String email;
-
-    private List<ReviewDTO> review;
-
+    
     private Role role;
 
     private List<PurchasedBookDTO> purchasedBook;

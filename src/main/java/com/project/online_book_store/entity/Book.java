@@ -40,9 +40,6 @@ public class Book {
     @JoinColumn(name = "userId")
     private User user;
 
-    @OneToMany(mappedBy = "book")
-    private List<Review> review;
-
     @ManyToOne
     @JoinColumn(name = "seller_id")
     private User seller;

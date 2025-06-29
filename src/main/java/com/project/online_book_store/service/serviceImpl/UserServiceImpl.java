@@ -142,7 +142,6 @@ public class UserServiceImpl implements UserService {
             user1.setUsername(updatedUser.getUsername());
             user1.setPassword(updatedUser.getPassword());
             user1.setEmail(updatedUser.getEmail());
-            user1.setReview(updatedUser.getReview());
             user1.setBook(updatedUser.getBook());
             user1.setMedicine(updatedUser.getMedicine());
             user1.setCartItems(updatedUser.getCartItems());

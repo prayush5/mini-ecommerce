@@ -39,9 +39,6 @@ public class User {
     private List<Book> book;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    private List<Review> review;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Orders> orders;
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")

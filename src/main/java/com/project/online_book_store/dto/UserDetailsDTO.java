@@ -29,8 +29,6 @@ public class UserDetailsDTO {
     @Email
     private String email;
 
-    private List<ReviewDTO> review;
-
     private List<PurchasedBookDTO> purchasedBook;
 
     private List<PurchasedMedicineDTO> purchasedMedicine;

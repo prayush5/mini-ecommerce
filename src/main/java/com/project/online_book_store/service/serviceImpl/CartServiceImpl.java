@@ -123,6 +123,11 @@ public class CartServiceImpl implements CartService {
         System.out.println("Saved cart item with id: " + savedItem.getId());
     }
 
+    @Override
+    public void clearCartByUserId(int userId) {
+        cartItemRepository.deleteById(userId);
+    }
+
 
     public List<CartItemDTO> getUserCart(int userId) {
         List<CartItem> cartItems = cartItemRepository.findByUser_UserId(userId);

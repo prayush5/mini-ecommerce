@@ -32,7 +32,7 @@ public class Helper {
             }
 
             for (Row row : sheet) {
-                if (row.getRowNum() == 0) continue; // skip header
+                if (row.getRowNum() == 0) continue;
 
                 Medicine medicine = new Medicine();
                 for (Cell cell : row) {
