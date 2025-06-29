@@ -5,7 +5,9 @@ import com.project.online_book_store.service.CartService;
 import com.stripe.Stripe;
 import com.stripe.model.checkout.Session;
 import com.stripe.param.checkout.SessionCreateParams;
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,8 +22,12 @@ import java.util.Map;
 @CrossOrigin(origins = "http://localhost:4200")
 public class StripeController {
 
-    public StripeController(){
-        Stripe.apiKey = "sk_test_51RfD3HP7JdwML9HEe5fUAlQgWb1pHVHO4os8efIAbEtXQ6d1PNkWs5SmkRfFxGhbklS21PzTweuIEnAkLuoJOpw000pwhDdOpp";
+    @Value("${stripe.api.key}")
+    private String stripeApiKey;
+
+    @PostConstruct
+    public void init() {
+        Stripe.apiKey = stripeApiKey;
     }
 
     @Autowired
